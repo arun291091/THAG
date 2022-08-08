@@ -1,6 +1,6 @@
 resource "aws_launch_template" "thag" {
   name_prefix   = "thag"
-  image_id      = "ami-052efd3df9dad4825"     # latest ami
+  image_id      = data.aws_ami.amazon-2.id
   instance_type = "t2.micro"
 }
 
