@@ -11,3 +11,12 @@ resource "aws_lb" "thag" {
     Environment = "dev"
   }
 }
+
+
+resource "aws_lb_target_group" "thag" {
+  name        = "thag"
+  target_type = "alb"
+  port        = 443
+  protocol    = "TCP"
+  vpc_id      = aws_vpc.base.id
+}
