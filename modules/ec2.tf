@@ -27,7 +27,7 @@ resource "aws_instance" "web" {
   key_name = aws_key_pair.key.key_name
   security_groups = [aws_security_group.secgrp.id]
   tags = {
-    Name = "zeta-1"
+    Name = "thag-1"
   }
   
 }
