@@ -21,13 +21,13 @@ module "THAG" {
 locals {
   local_newbits_priv = "2"
   local_newbits_pub  = "2"
-  local_vpc_cidr     = "172.31.0.0/22"
-  local_public_cidr  = "172.31.0.0/24"
+  local_vpc_cidr     = "172.32.0.0/22"
+  local_public_cidr  = "172.32.3.0/24"
   local_vpc_name     = "thag-1"
   az_list_priv       = ["us-west-2a", "us-west-2b", "us-west-2c"] 
   az_list_pub        = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
-  
+
 
 provider "aws" {}

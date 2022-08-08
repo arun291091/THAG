@@ -1,3 +1,4 @@
+
 resource "aws_lb" "thag" {
   name               = "thag-lb"
   internal           = false
@@ -15,8 +16,20 @@ resource "aws_lb" "thag" {
 
 resource "aws_lb_target_group" "thag" {
   name        = "thag"
-  target_type = "alb"
-  port        = 443
-  protocol    = "TCP"
+  port        = 80
+  protocol    = "HTTP"
   vpc_id      = aws_vpc.base.id
 }
+
+
+resource "aws_lb_listener" "lb_listner_https_test" {
+  load_balancer_arn = aws_lb.thag.id
+  port              = "80"
+  protocol          = "HTTP"
+  default_action {
+     type             = "forward"
+     target_group_arn = aws_lb_target_group.thag.id
+  }
+}
+
+

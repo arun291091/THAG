@@ -1,21 +1,23 @@
 #!/bin/bash
-#Installing Docker
-sudo apt-get remove docker docker-engine docker.io
-sudo apt-get update
-sudo apt-get install -y \
-apt-transport-https \
-ca-certificates \
-curl \
-software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository \
-"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) \
-stable"
-sudo apt-get update
-sudo apt-get install docker-ce -y
-sudo usermod -a -G docker $USER
-sudo systemctl enable docker
-sudo systemctl restart docker
-sudo docker run --name docker-nginx -p 443:443 nginx:latest
+sudo apt-get update -y
+sudo apt install nginx -y
+cat << EOF > index.html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello, Nginx!</title>
+</head>
+<body>
+    <h1>Hello, Talenthouse!</h1>
+    <p>We have just configured our Nginx web server on Ubuntu Server!</p>
+</body>
+</html>
+EOF
+
+sudo cp -pr index.html /var/www/html
+
+
+sudo sed -i s/80/443/g /etc/nginx/sites-enabled/default
+
+sudo service nginx restart

@@ -28,9 +28,18 @@ resource "aws_security_group" "secgrp" {
 
 
 resource "aws_security_group" "lb_sg" {
-  name        = "allow_tls"
+  name        = "lb"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.base.id
+
+  ingress {
+    description      = "from VPC"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.base.cidr_block]
+  }
+
 
   ingress {
     description      = "TLS from VPC"
