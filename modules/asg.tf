@@ -15,6 +15,7 @@ resource "aws_autoscaling_group" "thag" {
     id      = aws_launch_template.thag.id
     version = aws_launch_template.thag.latest_version
   }
+  depends_on = [aws_vpc.base]
 }
 
 
