@@ -27,3 +27,7 @@ locals {
   az_list_priv       = ["us-west-2a", "us-west-2b", "us-west-2c"] 
   az_list_pub        = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
+
+  
+
+provider "aws" {}
