@@ -2,6 +2,8 @@
 
 asg=$1
 
+
+
 ## 1 
 aws autoscaling update-auto-scaling-group \
     --auto-scaling-group-name "$1" \
@@ -9,6 +11,9 @@ aws autoscaling update-auto-scaling-group \
     --max-size 6 \
     --desired-capacity 5
 
+
+sleep 3600
+echo "lets wait for 5 minutes until it comes up"
 
 # 2 
 min=2
